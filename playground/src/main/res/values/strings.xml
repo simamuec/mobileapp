@@ -1,3 +1,12 @@
 <resources>
-    <string name="app_name">Playground</string>
+    
+    <!-- UI related string-values-->
+    <string name="app_name">Risikous App</string>
+    <string name="edit_message">Enter a Message</string>
+    <string name="button_send">Send</string>
+    
+    <!-- REST-Services URL's -->
+    <string name="get_all_publications">http://80.153.90.104/RisikousRESTful/rest/publications</string>
+    <string name="get_publication_byid">http://80.153.90.104/RisikousRESTful/rest/publication</string> <!-- add parameter in REST-Call -->
+
 </resources>

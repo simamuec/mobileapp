@@ -1,0 +1,243 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent" >
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:id="@+id/activity_create_questionnaire"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:paddingBottom="@dimen/activity_vertical_margin"
+        android:paddingLeft="@dimen/activity_horizontal_margin"
+        android:paddingRight="@dimen/activity_horizontal_margin"
+        android:paddingTop="@dimen/activity_vertical_margin"
+        tools:context="de.hszg.apps.playground.CreateQuestionnaireActivity">
+
+        <TextView
+            android:text="Meldekreis*"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/Meldekreis_textView"
+            android:textSize="18sp" />
+
+        <Spinner
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/reportingArea" />
+
+        <EditText
+            android:id="@+id/title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="text|textAutoCorrect"
+            android:maxLines="1"
+            android:maxLength="30"
+            android:hint="Titel" />
+
+        <EditText
+            android:id="@+id/incidentDescription"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textMultiLine|textAutoCorrect|textCapSentences"
+            android:maxLines="10"
+            android:maxLength="1000"
+            android:hint="Ereignisbeschreibung*"
+            android:layout_centerVertical="true"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentLeft="true" />
+
+        <TextView
+            android:text="Risikobewertung*"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/Risikobewertung_textView"
+            android:textSize="18sp" />
+
+        <TextView
+            android:text="Eintrittswahrscheinlichkeit"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/Eintrittswahrscheinlichkeit_text_View" />
+
+        <RadioGroup xmlns:android="http://schemas.android.com/apk/res/android"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <RadioButton
+                android:text="niedrig"
+                android:layout_width="120dp"
+                android:layout_height="wrap_content"
+                android:id="@+id/occurrenceRating_1" />
+            <RadioButton
+                android:text="mittel"
+                android:layout_width="120dp"
+                android:layout_height="wrap_content"
+                android:id="@+id/occurrenceRating_2" />
+            <RadioButton
+                android:text="hoch"
+                android:layout_width="120dp"
+                android:layout_height="wrap_content"
+                android:id="@+id/occurrenceRating_3" />
+        </RadioGroup>
+
+        <TextView
+            android:text="Entdeckungswahrscheinlichkeit"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/Entdeckungswahrscheinlichkeit_textView" />
+
+        <RadioGroup xmlns:android="http://schemas.android.com/apk/res/android"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <RadioButton
+                android:text="niedrig"
+                android:layout_width="120dp"
+                android:layout_height="wrap_content"
+                android:id="@+id/detectionRating_1" />
+            <RadioButton
+                android:text="mittel"
+                android:layout_width="120dp"
+                android:layout_height="wrap_content"
+                android:id="@+id/detectionRating_2" />
+            <RadioButton
+                android:text="hoch"
+                android:layout_width="120dp"
+                android:layout_height="wrap_content"
+                android:id="@+id/detectionRating_3" />
+        </RadioGroup>
+
+        <TextView
+            android:text="Bedeutung"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/Bedeutung_textView" />
+
+        <RadioGroup xmlns:android="http://schemas.android.com/apk/res/android"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <RadioButton
+                android:text="niedrig"
+                android:layout_width="120dp"
+                android:layout_height="wrap_content"
+                android:id="@+id/significance_1" />
+            <RadioButton
+                android:text="mittel"
+                android:layout_width="120dp"
+                android:layout_height="wrap_content"
+                android:id="@+id/significance_2" />
+            <RadioButton
+                android:text="hoch"
+                android:layout_width="120dp"
+                android:layout_height="wrap_content"
+                android:id="@+id/significance_3" />
+        </RadioGroup>
+
+        <TextView
+            android:text="Wann ist das Ereignis passiert?"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/time_textView"
+            android:textSize="18sp" />
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="date"
+            android:ems="10"
+            android:id="@+id/date"
+            android:hint="Datum" />
+        <EditText
+            android:id="@+id/time"
+            android:onClick="onClicked"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="5"
+            android:hint="Uhrzeit"
+            android:inputType="time" />
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textMultiLine|textAutoCorrect|textCapSentences"
+            android:maxLines="1"
+            android:maxLength="50"
+            android:hint="Wo ist das Ereignis passiert?"
+            android:id="@+id/location" />
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Was wurde als Sofortmaßnahme eingeleitet?"
+            android:inputType="textMultiLine|textAutoCorrect|textCapSentences"
+            android:maxLines="10"
+            android:maxLength="1000"
+            android:id="@+id/immediateMeasure" />
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Folgen (z.B.: Personenschäden)"
+            android:inputType="textMultiLine|textAutoCorrect|textCapSentences"
+            android:maxLines="10"
+            android:maxLength="1000"
+            android:id="@+id/consequences" />
+        <TextView
+            android:text="Was hat Ihrer Meinung nach zu dem Ereignis geführt?"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/opinionOfReporter"
+            android:textSize="18sp" />
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textMultiLine|textAutoCorrect|textCapSentences"
+            android:maxLines="10"
+            android:maxLength="1000"
+            android:id="@+id/personalFactors"
+            android:hint="Personenbezogene Faktoren (z.B. Müdigkeit, Motivation, Ausbildung)" />
+        <EditText
+            android:id="@+id/organisationalFactors"
+            android:onClick="onClicked"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textMultiLine|textAutoCorrect|textCapSentences"
+            android:maxLines="10"
+            android:maxLength="1000"
+            android:hint="Organisatorische Faktoren (z.B. Abläufe, Standards, Personalausstattung)"/>
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textMultiLine|textAutoCorrect|textCapSentences"
+            android:maxLines="10"
+            android:maxLength="1000"
+            android:hint="Weitere Anmerkungen"
+            android:id="@+id/additionalNotes" />
+
+        <TextView
+            android:text="Kameraplugin"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/textView8"/>
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textMultiLine|textAutoCorrect|textCapSentences"
+            android:maxLines="10"
+            android:maxLength="1000"
+            android:hint="Kontaktdaten"
+            android:id="@+id/contactInformation" />
+
+        <Button
+            android:text="Abschicken"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/btnErstellte_Meldung_abschicken"
+            android:onClick="meldung_abschicken"/>
+    </LinearLayout>
+</ScrollView>
