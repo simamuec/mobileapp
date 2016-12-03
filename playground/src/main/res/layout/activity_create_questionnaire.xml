@@ -61,6 +61,7 @@
             android:id="@+id/Eintrittswahrscheinlichkeit_text_View" />
 
         <RadioGroup xmlns:android="http://schemas.android.com/apk/res/android"
+            android:id="@+id/occurrenceRadioGroup"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal">
@@ -88,6 +89,7 @@
             android:id="@+id/Entdeckungswahrscheinlichkeit_textView" />
 
         <RadioGroup xmlns:android="http://schemas.android.com/apk/res/android"
+            android:id="@+id/detectionRadioGroup"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal">
@@ -115,6 +117,7 @@
             android:id="@+id/Bedeutung_textView" />
 
         <RadioGroup xmlns:android="http://schemas.android.com/apk/res/android"
+            android:id="@+id/significanceRadioGroup"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal">

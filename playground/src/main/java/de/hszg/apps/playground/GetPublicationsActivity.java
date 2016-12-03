@@ -1,8 +1,14 @@
 package de.hszg.apps.playground;
 
+import android.app.ListActivity;
+import android.app.LoaderManager;
+import android.content.Loader;
+import android.database.Cursor;
 import android.os.AsyncTask;
+import android.provider.ContactsContract;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.widget.SimpleCursorAdapter;
 import android.widget.TextView;
 
 import org.xmlpull.v1.XmlPullParserException;
@@ -18,38 +24,39 @@ import java.util.concurrent.ExecutionException;
 
 import de.hszg.apps.playground.model.Publication;
 import de.hszg.apps.playground.parser.Parser;
+import de.hszg.apps.playground.tasks.GetPublicationsTask;
 import de.hszg.apps.playground.util.UiUtils;
-
-public class GetPublicationsActivity extends AppCompatActivity {
+//http://www.vogella.com/tutorials/AndroidListView/article.html
+public class GetPublicationsActivity extends ListActivity implements LoaderManager.LoaderCallbacks<Cursor> {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_get_publications);
 
-        //get_xml get_xml = new get_xml();
-        //get_xml.execute();
-        GetPublicationsTask getPublicationsTask = new GetPublicationsTask();
-        getPublicationsTask.execute();
-        /*try {
-            TextView textView = UiUtils.findView(this, R.id.result);
-            textView.setText(getPublicationsTask.get());
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        } catch (ExecutionException e) {
-            e.printStackTrace();
-        }*/
-
+        get_xml get_xml = new get_xml();
+        get_xml.execute();
 
     }
 
+    @Override
+    public Loader<Cursor> onCreateLoader(int id, Bundle args) {
+        return null;
+    }
 
-    class GetPublicationsTask extends AsyncTask<String, Void, String> {
+    @Override
+    public void onLoadFinished(Loader<Cursor> loader, Cursor data) {
+
+    }
+
+    @Override
+    public void onLoaderReset(Loader<Cursor> loader) {
+
+    }
+
+    class get_xml extends AsyncTask<String, Void, String> {
         InputStream is = null;
-        String result = null;
-        public String getResult(){
-            return result;
-        }
+
         @Override
         protected String doInBackground(String... voids) {
             String get = "http://80.153.90.104/RisikousRESTful/rest/publications";
@@ -77,8 +84,8 @@ public class GetPublicationsActivity extends AppCompatActivity {
             return null;
         }
         protected void onPostExecute(String result) {
-            TextView textview = (TextView) findViewById(R.id.result);
-            textview.setText(result.toString());
+            //TextView textview = (TextView) findViewById(R.id.result);
+            //textview.setText(result.toString());
             Parser parser = new Parser();
 
             try {
@@ -94,42 +101,4 @@ public class GetPublicationsActivity extends AppCompatActivity {
         }
 
     }
-
-    /*class get_xml extends AsyncTask<String, Void, String> {
-        InputStream is = null;
-        String result = null;
-        public String getResult(){
-            return result;
-        }
-        @Override
-        protected String doInBackground(String... voids) {
-            DefaultHttpClient httpclient = new DefaultHttpClient();
-            HttpGet httpget = new HttpGet("http://80.153.90.104/RisikousRESTful/rest/publications");
-            try {
-                HttpResponse httpResponse = httpclient.execute(httpget);
-                is = httpResponse.getEntity().getContent();
-                BufferedInputStream bis = new BufferedInputStream(is);
-                //BufferedOutputStream bos = new BufferedOutputStream();
-                ByteArrayOutputStream bos = new ByteArrayOutputStream();
-                int result=bis.read();
-                while(result != -1){
-                    byte b = (byte) result;
-                    bos.write(b);
-                    result = bis.read();
-                }
-                System.out.println("Ausgabe: "+ bos.toString());
-                this.result = bos.toString();
-                return bos.toString();
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-
-            return "kein response";
-        }
-        protected void onPostExecute(String result) {
-            TextView textview = (TextView) findViewById(R.id.get_test);
-            textview.setText(result.toString());
-        }
-
-    }*/
 }

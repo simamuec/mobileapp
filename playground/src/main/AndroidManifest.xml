@@ -24,6 +24,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".DisplayMessageActivity" />
         <activity android:name=".CreateQuestionnaireActivity" />
         <activity android:name=".GetPublicationsActivity" />
     </application>

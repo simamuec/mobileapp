@@ -29,7 +29,6 @@ public class GetPublicationsTask extends AsyncTask<String, Void, String> {
             URL url = new URL(get);
             HttpURLConnection httpURLConnection = (HttpURLConnection) url.openConnection();
             httpURLConnection.setRequestMethod("GET");
-
             InputStream is = new BufferedInputStream(httpURLConnection.getInputStream());
 
             ByteArrayOutputStream bos = new ByteArrayOutputStream();
@@ -48,6 +47,9 @@ public class GetPublicationsTask extends AsyncTask<String, Void, String> {
         }
 
         return null;
+    }
+    protected void onPostExecute(String result) {
+
     }
 
 }
