@@ -1,13 +1,17 @@
 package de.hszg.apps.playground;
 
+import android.app.Activity;
 import android.app.ListActivity;
 import android.app.LoaderManager;
+import android.content.Context;
 import android.content.Loader;
 import android.database.Cursor;
 import android.os.AsyncTask;
 import android.provider.ContactsContract;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.widget.ArrayAdapter;
+import android.widget.LinearLayout;
 import android.widget.SimpleCursorAdapter;
 import android.widget.TextView;
 
@@ -19,21 +23,29 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.util.Collections;
 import java.util.List;
 import java.util.concurrent.ExecutionException;
 
 import de.hszg.apps.playground.model.Publication;
 import de.hszg.apps.playground.parser.Parser;
 import de.hszg.apps.playground.tasks.GetPublicationsTask;
+import de.hszg.apps.playground.util.PublicationCompareEnum;
+import de.hszg.apps.playground.util.PublicationListComparator;
 import de.hszg.apps.playground.util.UiUtils;
 //http://www.vogella.com/tutorials/AndroidListView/article.html
 public class GetPublicationsActivity extends ListActivity implements LoaderManager.LoaderCallbacks<Cursor> {
+
+    private Context mContext;
+    Activity mActivity;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_get_publications);
 
+        mContext = getApplicationContext();
+        mActivity = GetPublicationsActivity.this;
         get_xml get_xml = new get_xml();
         get_xml.execute();
 
@@ -88,16 +100,24 @@ public class GetPublicationsActivity extends ListActivity implements LoaderManag
             //textview.setText(result.toString());
             Parser parser = new Parser();
 
+            List<Publication> publicationList = null;
+            String[] values = new String[]{"1", "2", "3"};
             try {
-                List<Publication> publicationList = parser.parse(result.toString());
+                publicationList = parser.parse(result.toString());
+                //int counter = 0;
                 for(Publication publication:publicationList){
-                    publication.toString();
+                    //values[counter] = publication.toString();
+                    //counter++;
                 }
             } catch (XmlPullParserException e) {
                 e.printStackTrace();
             } catch (IOException e) {
                 e.printStackTrace();
             }
+
+            ArrayAdapter<Publication> adapter = new ArrayAdapter<Publication>(mContext, android.R.layout.simple_list_item_1, publicationList);
+            adapter.sort(Collections.reverseOrder(new PublicationListComparator(PublicationCompareEnum.ENTRY_DATE)));
+            setListAdapter(adapter);
         }
 
     }

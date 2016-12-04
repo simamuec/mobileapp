@@ -83,7 +83,7 @@ public class Parser {
             }
         }
         System.out.println(publication.toString());
-        return new Publication();
+        return publication;
     }
 
     private ReportingArea readreportingArea(XmlPullParser xmlPullParser) throws XmlPullParserException,IOException {
